@@ -1,15 +1,17 @@
+
+
 package com.dfwgg.sample.service
 
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate;
 
 import com.dfwgg.sample.model.RecordPointsRequest;
-import com.dfwgg.sample.model.User
+import com.dfwgg.sample.model.User;
 import com.dfwgg.sample.model.UserRewards;
 
 @Service
-class ApiGatewayServiceImpl implements ApiGatewayService {
-	
+class ApiGatewayService {
+
 	RestTemplate restTemplate = new RestTemplate()
 	
 	User createUser(User user){
@@ -42,5 +44,4 @@ class ApiGatewayServiceImpl implements ApiGatewayService {
 		def userRewards = restTemplate.getForObject("http://localhost:8080/reward/user/${userName}",UserRewards.class)
 		userRewards
 	}
-
 }

@@ -1,7 +1,7 @@
 package com.dfwgg.sample.service
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Service
+import org.springframework.stereotype.Service;
 
 import com.dfwgg.sample.dao.RewardDao
 import com.dfwgg.sample.model.PointEvent
@@ -9,7 +9,8 @@ import com.dfwgg.sample.model.RecordPointsRequest
 import com.dfwgg.sample.model.UserRewards
 
 @Service
-class RewardServiceImpl implements RewardService{
+class RewardService {
+
 	
 	@Autowired
 	RewardDao rewardDao 
@@ -37,5 +38,4 @@ class RewardServiceImpl implements RewardService{
 		 UserRewards userRewardRecord = rewardDao.findByUserName(userName)
 		 userRewardRecord
 	 }
-	 
 }

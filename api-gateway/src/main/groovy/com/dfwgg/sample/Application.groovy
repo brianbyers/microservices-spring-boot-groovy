@@ -1,16 +1,18 @@
-package com.dfwgg.sample;
+package com.dfwgg.sample
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan
-public class ApiGatewayApplication {
+class Application {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ApiGatewayApplication.class, args);
-    }
+	static main(args) {
+		SpringApplication.run(Application.class, args);
+	}
+
 }
