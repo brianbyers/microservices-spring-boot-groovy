@@ -19,25 +19,14 @@ class ApiGatewayService {
 		def result = restTemplate.postForObject("http://localhost:8090/user",user,User.class)
 		result
 	}
-	
+
 	String recordReward(RecordPointsRequest request){
-		try{
-			def user = restTemplate.getForObject("http://localhost:8090/user/${request.userName}",User.class)
-			if(user){
-				def userReward = restTemplate.postForObject("http://localhost:8080/reward/user/record", request,UserRewards.class)
-				if(userReward)
-					"Reward Recorded Successfully"
-				else
-					"Something went wrong"
-			}
-			else{
-				"User does not exist"
-			}
-		}
-		catch(Exception e){
-			e.printStackTrace()
+
+		def userReward = restTemplate.postForObject("http://localhost:8080/reward/user/record", request,UserRewards.class)
+		if(userReward)
+			"Reward Recorded Successfully"
+		else
 			"Something went wrong"
-		}
 	}
 	
 	UserRewards getUserRewards(String userName){
