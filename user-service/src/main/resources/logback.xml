@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <encoder>
+            <pattern>%date{ISO8601} %highlight([%thread] %-5level)  %cyan(%logger{32}) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>/usr/local/app-logs/resources/user-service/logs/user-service.log
+        </File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>
+                /usr/local/app-logs/resources/user-service/logs/user-service.%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <maxHistory>90</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %date{ISO8601} %highlight([%thread] %-5level)  %cyan(%logger{32}) - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <appender name="ERROR_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>/usr/local/app-logs/resources/user-service/logs/user-service-errors.log
+        </File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>
+                /usr/local/app-logs/resources/user-service/logs/user-service-errors.%d{yyyy-MM-dd}.log
+            </FileNamePattern>
+            <maxHistory>90</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %date{ISO8601} %highlight([%thread] %-5level)  %cyan(%logger{32}) - %msg%n
+            </Pattern>
+        </layout>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+
+      
+
+    <logger name="com.dfwgg" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE" />        
+        <appender-ref ref="LOG_FILE" />
+        <appender-ref ref="ERROR_LOG_FILE" />
+    </logger>
+
+    <logger name="org.springframework" level="WARN" additivity="false">
+        <appender-ref ref="CONSOLE" />        
+        <appender-ref ref="LOG_FILE" />
+        <appender-ref ref="ERROR_LOG_FILE" />
+    </logger>
+
+
+</configuration>

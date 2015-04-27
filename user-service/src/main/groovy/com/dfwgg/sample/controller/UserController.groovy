@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.*
 
 import com.dfwgg.sample.dao.UserDao;
 import com.dfwgg.sample.model.User
+import com.dfwgg.sample.service.UserService;
 
 @RestController
 class UserController {
 
 	@Autowired
 	UserDao userDaoRepo
+	
+	@Autowired 
+	UserService userService
 
 	@RequestMapping(value="/sampleUser", method = GET)
 	@ResponseBody
@@ -27,7 +31,7 @@ class UserController {
 
 	@RequestMapping(value = '/user', method = POST)
 	ResponseEntity<User> addUser(@RequestBody User userIn){
-		def user = userDaoRepo.save(userIn)
+		def user = userService.insertUser(userIn)
 		if(user)
 			 new ResponseEntity<User>(user,HttpStatus.CREATED)
 		else
